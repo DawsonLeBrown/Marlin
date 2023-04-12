@@ -924,10 +924,10 @@
 // #define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 // #define XY_COUNTERPART_BACKOFF_MM 0         // (mm) Backoff X after homing Y, and vice-versa
 
-#define QUICK_HOME // If G28 contains XY do a diagonal move first
-// #define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
-// #define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
-// #define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
+#define QUICK_HOME                            // If G28 contains XY do a diagonal move first
+//#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
+//#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
+//#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
 // @section bltouch
 
@@ -1062,14 +1062,14 @@
 #define Z_STEPPER_ALIGN_AMP 1.0 // Use a value > 1.0 NOTE: This may cause instability!
 #endif
 
-// On a 300mm bed a 5% grade would give a misalignment of ~1.5cm
-#define G34_MAX_GRADE 5              // (%) Maximum incline that G34 will handle
-#define Z_STEPPER_ALIGN_ITERATIONS 3 // Number of iterations to apply during alignment
-#define Z_STEPPER_ALIGN_ACC 0.02     // Stop iterating early if the accuracy is better than this
-#define RESTORE_LEVELING_AFTER_G34   // Restore leveling after G34 is done?
-// After G34, re-home Z (G28 Z) or just calculate it from the last probe heights?
-// Re-homing might be more precise in reproducing the actual 'G28 Z' homing height, especially on an uneven bed.
-#define HOME_AFTER_G34
+  // On a 300mm bed a 5% grade would give a misalignment of ~1.5cm
+  #define G34_MAX_GRADE              5    // (%) Maximum incline that G34 will handle
+  #define Z_STEPPER_ALIGN_ITERATIONS 3    // Number of iterations to apply during alignment
+  #define Z_STEPPER_ALIGN_ACC        0.02 // Stop iterating early if the accuracy is better than this
+  #define RESTORE_LEVELING_AFTER_G34      // Restore leveling after G34 is done?
+  // After G34, re-home Z (G28 Z) or just calculate it from the last probe heights?
+  // Re-homing might be more precise in reproducing the actual 'G28 Z' homing height, especially on an uneven bed.
+  #define HOME_AFTER_G34
 #endif
 
 //
@@ -1100,13 +1100,13 @@
 
 // #define ASSISTED_TRAMMING_WAIT_POSITION { X_CENTER, Y_CENTER, 30 } // Move the nozzle out of the way for adjustment
 
-/**
- * Screw thread:
- *   M3: 30 = Clockwise, 31 = Counter-Clockwise
- *   M4: 40 = Clockwise, 41 = Counter-Clockwise
- *   M5: 50 = Clockwise, 51 = Counter-Clockwise
- */
-#define TRAMMING_SCREW_THREAD 40
+  /**
+   * Screw thread:
+   *   M3: 30 = Clockwise, 31 = Counter-Clockwise
+   *   M4: 40 = Clockwise, 41 = Counter-Clockwise
+   *   M5: 50 = Clockwise, 51 = Counter-Clockwise
+   */
+  #define TRAMMING_SCREW_THREAD 40
 
 #endif
 
@@ -1233,11 +1233,11 @@
 #define DISABLE_IDLE_E // Shut down all idle extruders
 
 // Default Minimum Feedrates for printing and travel moves
-#define DEFAULT_MINIMUMFEEDRATE 0.0   // (mm/s) Minimum feedrate. Set with M205 S.
-#define DEFAULT_MINTRAVELFEEDRATE 0.0 // (mm/s) Minimum travel feedrate. Set with M205 T.
+#define DEFAULT_MINIMUMFEEDRATE             0.0     // (mm/s) Minimum feedrate. Set with M205 S.
+#define DEFAULT_MINTRAVELFEEDRATE           0.0     // (mm/s) Minimum travel feedrate. Set with M205 T.
 #if HAS_ROTATIONAL_AXES
-#define DEFAULT_ANGULAR_MINIMUMFEEDRATE 0.0   // (°/s) Minimum feedrate for rotational-only moves. Set with M205 P.
-#define DEFAULT_ANGULAR_MINTRAVELFEEDRATE 0.0 // (°/s) Minimum travel feedrate for rotational-only moves. Set with M205 Q.
+  #define DEFAULT_ANGULAR_MINIMUMFEEDRATE   0.0     // (°/s) Minimum feedrate for rotational-only moves. Set with M205 P.
+  #define DEFAULT_ANGULAR_MINTRAVELFEEDRATE 0.0     // (°/s) Minimum travel feedrate for rotational-only moves. Set with M205 Q.
 #endif
 
 // Minimum time that a segment needs to take as the buffer gets emptied
@@ -1504,18 +1504,18 @@
 // #define LCD_BACKLIGHT_TIMEOUT_MINS 1  // (minutes) Timeout before turning off the backlight
 
 #if HAS_BED_PROBE && EITHER(HAS_MARLINUI_MENU, HAS_TFT_LVGL_UI)
-#define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
-#if ENABLED(PROBE_OFFSET_WIZARD)
-/**
- * Enable to init the Probe Z-Offset when starting the Wizard.
- * Use a height slightly above the estimated nozzle-to-probe Z offset.
- * For example, with an offset of -5, consider a starting height of -4.
- */
-#define PROBE_OFFSET_WIZARD_START_Z -0.4
+  #define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+  #if ENABLED(PROBE_OFFSET_WIZARD)
+    /**
+     * Enable to init the Probe Z-Offset when starting the Wizard.
+     * Use a height slightly above the estimated nozzle-to-probe Z offset.
+     * For example, with an offset of -5, consider a starting height of -4.
+     */
+    #define PROBE_OFFSET_WIZARD_START_Z -0.4
 
-// Set a convenient position to do the calibration (probing point and nozzle/bed-distance)
-// #define PROBE_OFFSET_WIZARD_XY_POS { X_CENTER, Y_CENTER }
-#endif
+    // Set a convenient position to do the calibration (probing point and nozzle/bed-distance)
+    //#define PROBE_OFFSET_WIZARD_XY_POS { X_CENTER, Y_CENTER }
+  #endif
 #endif
 
 #if HAS_MARLINUI_MENU
@@ -1537,16 +1537,14 @@
     0, 0, 0            \
   } // Z offsets for X axis sample points
 #endif
-
 // Show Deploy / Stow Probe options in the Motion menu.
 #define PROBE_DEPLOY_STOW_MENU
 #endif
-
-// Include a page of printer information in the LCD Main Menu
-#define LCD_INFO_MENU
-#if ENABLED(LCD_INFO_MENU)
-// #define LCD_PRINTER_INFO_IS_BOOTSCREEN // Show bootscreen(s) instead of Printer Info pages
-#endif
+  // Include a page of printer information in the LCD Main Menu
+  #define LCD_INFO_MENU
+  #if ENABLED(LCD_INFO_MENU)
+    //#define LCD_PRINTER_INFO_IS_BOOTSCREEN // Show bootscreen(s) instead of Printer Info pages
+  #endif
 
 // Add 50/100mm moves to MarlinUI even with a smaller bed
 // #define LARGE_MOVE_ITEMS
@@ -1560,29 +1558,29 @@
 #endif // HAS_MARLINUI_MENU
 
 #if HAS_DISPLAY
-/**
- * *** VENDORS PLEASE READ ***
- *
- * Marlin allows you to add a custom boot image for Graphical LCDs.
- * With this option Marlin will first show your custom screen followed
- * by the standard Marlin logo with version number and web URL.
- *
- * We encourage you to take advantage of this new feature and we also
- * respectfully request that you retain the unmodified Marlin boot screen.
- */
-#if ANY(HAS_MARLINUI_U8GLIB, TOUCH_UI_FTDI_EVE, IS_DWIN_MARLINUI)
-#define SHOW_BOOTSCREEN // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
-#if ENABLED(SHOW_BOOTSCREEN)
-#define BOOTSCREEN_TIMEOUT 4000 // (ms) Total Duration to display the boot screen(s)
-#if EITHER(HAS_MARLINUI_U8GLIB, TFT_COLOR_UI)
-#define BOOT_MARLIN_LOGO_SMALL // Show a smaller Marlin logo on the Boot Screen (saving lots of flash)
-#endif
-#define SHOW_CUSTOM_BOOTSCREEN // Show the bitmap in Marlin/_Bootscreen.h on startup.
-#endif
-#if HAS_MARLINUI_U8GLIB
-#define CUSTOM_STATUS_SCREEN_IMAGE // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
-#endif
-#endif
+  /**
+   * *** VENDORS PLEASE READ ***
+   *
+   * Marlin allows you to add a custom boot image for Graphical LCDs.
+   * With this option Marlin will first show your custom screen followed
+   * by the standard Marlin logo with version number and web URL.
+   *
+   * We encourage you to take advantage of this new feature and we also
+   * respectfully request that you retain the unmodified Marlin boot screen.
+   */
+  #if ANY(HAS_MARLINUI_U8GLIB, TOUCH_UI_FTDI_EVE, IS_DWIN_MARLINUI)
+    #define SHOW_BOOTSCREEN                 // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
+    #if ENABLED(SHOW_BOOTSCREEN)
+      #define BOOTSCREEN_TIMEOUT 4000       // (ms) Total Duration to display the boot screen(s)
+      #if EITHER(HAS_MARLINUI_U8GLIB, TFT_COLOR_UI)
+        #define BOOT_MARLIN_LOGO_SMALL      // Show a smaller Marlin logo on the Boot Screen (saving lots of flash)
+      #endif
+      #define SHOW_CUSTOM_BOOTSCREEN        // Show the bitmap in Marlin/_Bootscreen.h on startup.
+    #endif
+    #if HAS_MARLINUI_U8GLIB
+      #define CUSTOM_STATUS_SCREEN_IMAGE    // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
+    #endif
+  #endif
 
 // #define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
 #define SOUND_ON_DEFAULT // Buzzer/speaker default enabled state
@@ -1590,8 +1588,8 @@
 // The timeout to return to the status screen from sub-menus
 // #define LCD_TIMEOUT_TO_STATUS 15000   // (ms)
 
-// Scroll a longer status message into view
-#define STATUS_MESSAGE_SCROLLING
+  // Scroll a longer status message into view
+  #define STATUS_MESSAGE_SCROLLING
 
 // Apply a timeout to low-priority status messages
 // #define STATUS_MESSAGE_TIMEOUT_SEC 30 // (seconds)
@@ -1789,7 +1787,7 @@
 // #define LONG_FILENAME_WRITE_SUPPORT   // Create / delete files with long filenames via M28, M30, and Binary Transfer Protocol
 // #define M20_TIMESTAMP_SUPPORT         // Include timestamps by adding the 'T' flag to M20 commands
 
-#define SCROLL_LONG_FILENAMES // Scroll long filenames in the SD card menu
+  #define SCROLL_LONG_FILENAMES           // Scroll long filenames in the SD card menu
 
 // #define SD_ABORT_NO_COOLDOWN          // Leave the heaters on after Stop Print (not recommended!)
 
@@ -1922,6 +1920,15 @@
  */
 #if ENABLED(SDSUPPORT) && DISABLED(NO_SD_HOST_DRIVE)
 // #define DISKIO_HOST_DRIVE
+#endif
+
+/**
+ * By default the framework is responsible for the shared media I/O.
+ * Enable this if you need Marlin to take care of the shared media I/O.
+ * Useful if shared media isn't working properly on some boards.
+ */
+#if ENABLED(SDSUPPORT) && DISABLED(NO_SD_HOST_DRIVE)
+  //#define DISKIO_HOST_DRIVE
 #endif
 
 /**
@@ -2224,36 +2231,36 @@
  */
 #define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
-// #define INTEGRATED_BABYSTEPPING         // EXPERIMENTAL integration of babystepping into the Stepper ISR
-// #define BABYSTEP_WITHOUT_HOMING
-// #define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement).
-// #define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
-#define BABYSTEP_INVERT_Z false // Change if Z babysteps should go the other way
-// #define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
-#define BABYSTEP_MULTIPLICATOR_Z 1  // (steps or mm) Steps or millimeter distance for each Z babystep
-#define BABYSTEP_MULTIPLICATOR_XY 1 // (steps or mm) Steps or millimeter distance for each XY babystep
+  //#define INTEGRATED_BABYSTEPPING         // EXPERIMENTAL integration of babystepping into the Stepper ISR
+  //#define BABYSTEP_WITHOUT_HOMING
+  //#define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement).
+  //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
+  #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
+  //#define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
+  #define BABYSTEP_MULTIPLICATOR_Z  1       // (steps or mm) Steps or millimeter distance for each Z babystep
+  #define BABYSTEP_MULTIPLICATOR_XY 1       // (steps or mm) Steps or millimeter distance for each XY babystep
 
-#define DOUBLECLICK_FOR_Z_BABYSTEPPING // Double-click on the Status Screen for Z Babystepping.
-#if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
-#define DOUBLECLICK_MAX_INTERVAL 1250 // Maximum interval between clicks, in milliseconds.
-                                      // Note: Extra time may be added to mitigate controller latency.
-// #define MOVE_Z_WHEN_IDLE              // Jump to the move Z menu on double-click when printer is idle.
-#if ENABLED(MOVE_Z_WHEN_IDLE)
-#define MOVE_Z_IDLE_MULTIPLICATOR 1 // Multiply 1mm by this factor for the move step size.
-#endif
-#endif
+  #define DOUBLECLICK_FOR_Z_BABYSTEPPING    // Double-click on the Status Screen for Z Babystepping.
+  #if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
+    #define DOUBLECLICK_MAX_INTERVAL 1250   // Maximum interval between clicks, in milliseconds.
+                                            // Note: Extra time may be added to mitigate controller latency.
+    //#define MOVE_Z_WHEN_IDLE              // Jump to the move Z menu on doubleclick when printer is idle.
+    #if ENABLED(MOVE_Z_WHEN_IDLE)
+      #define MOVE_Z_IDLE_MULTIPLICATOR 1   // Multiply 1mm by this factor for the move step size.
+    #endif
+  #endif
 
 #define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
-#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
-// #define BABYSTEP_GLOBAL_Z               // Combine M424 Z and Babystepping
+  #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
+  //#define BABYSTEP_GLOBAL_Z               // Combine M424 Z and Babystepping
 
-#if EITHER(BABYSTEP_ZPROBE_OFFSET, BABYSTEP_GLOBAL_Z)
-#if ENABLED(BABYSTEP_ZPROBE_OFFSET)
-// #define BABYSTEP_HOTEND_Z_OFFSET    // For multiple hotends, babystep relative Z offsets
-#endif
-// #define BABYSTEP_GFX_OVERLAY          // Enable graphical overlay on Z-offset editor
-#endif
+  #if EITHER(BABYSTEP_ZPROBE_OFFSET, BABYSTEP_GLOBAL_Z)
+    #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
+      //#define BABYSTEP_HOTEND_Z_OFFSET    // For multiple hotends, babystep relative Z offsets
+    #endif
+    //#define BABYSTEP_GFX_OVERLAY          // Enable graphical overlay on Z-offset editor
+  #endif
 #endif
 
 // @section extruder
@@ -2903,21 +2910,21 @@
 
 #define HOLD_MULTIPLIER 0.5 // Scales down the holding current from run current
 
-/**
- * Interpolate microsteps to 256
- * Override for each driver with <driver>_INTERPOLATE settings below
- */
-#define INTERPOLATE true
+  /**
+   * Interpolate microsteps to 256
+   * Override for each driver with <driver>_INTERPOLATE settings below
+   */
+  #define INTERPOLATE      true
 
-#if AXIS_IS_TMC_CONFIG(X)
-#define X_CURRENT 580            // (mA) RMS current. Multiply by 1.414 for peak current.
-#define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
-#define X_MICROSTEPS 16          // 0..256
-#define X_RSENSE 0.11            // Multiplied x1000 for TMC26X
-#define X_CHAIN_POS -1           // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
-// #define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
-// #define X_HOLD_MULTIPLIER 0.5    // Enable to override 'HOLD_MULTIPLIER' for the X axis
-#endif
+  #if AXIS_IS_TMC_CONFIG(X)
+    #define X_CURRENT       580        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
+    #define X_MICROSTEPS     16        // 0..256
+    #define X_RSENSE          0.11     // Multiplied x1000 for TMC26X
+    #define X_CHAIN_POS      -1        // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
+    //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
+    //#define X_HOLD_MULTIPLIER 0.5    // Enable to override 'HOLD_MULTIPLIER' for the X axis
+  #endif
 
 #if AXIS_IS_TMC_CONFIG(X2)
 #define X2_CURRENT 800
@@ -2929,15 +2936,15 @@
 // #define X2_HOLD_MULTIPLIER 0.5
 #endif
 
-#if AXIS_IS_TMC_CONFIG(Y)
-#define Y_CURRENT 580
-#define Y_CURRENT_HOME Y_CURRENT
-#define Y_MICROSTEPS 16
-#define Y_RSENSE 0.11
-#define Y_CHAIN_POS -1
-// #define Y_INTERPOLATE  true
-// #define Y_HOLD_MULTIPLIER 0.5
-#endif
+  #if AXIS_IS_TMC_CONFIG(Y)
+    #define Y_CURRENT       580
+    #define Y_CURRENT_HOME  Y_CURRENT
+    #define Y_MICROSTEPS     16
+    #define Y_RSENSE          0.11
+    #define Y_CHAIN_POS      -1
+    //#define Y_INTERPOLATE  true
+    //#define Y_HOLD_MULTIPLIER 0.5
+  #endif
 
 #if AXIS_IS_TMC_CONFIG(Y2)
 #define Y2_CURRENT 800
@@ -2949,15 +2956,15 @@
 // #define Y2_HOLD_MULTIPLIER 0.5
 #endif
 
-#if AXIS_IS_TMC_CONFIG(Z)
-#define Z_CURRENT 580
-#define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 16
-#define Z_RSENSE 0.11
-#define Z_CHAIN_POS -1
-// #define Z_INTERPOLATE  true
-// #define Z_HOLD_MULTIPLIER 0.5
-#endif
+  #if AXIS_IS_TMC_CONFIG(Z)
+    #define Z_CURRENT       580
+    #define Z_CURRENT_HOME  Z_CURRENT
+    #define Z_MICROSTEPS     16
+    #define Z_RSENSE          0.11
+    #define Z_CHAIN_POS      -1
+    //#define Z_INTERPOLATE  true
+    //#define Z_HOLD_MULTIPLIER 0.5
+  #endif
 
 #if AXIS_IS_TMC_CONFIG(Z2)
 #define Z2_CURRENT 800
@@ -3049,14 +3056,14 @@
 // #define W_HOLD_MULTIPLIER 0.5
 #endif
 
-#if AXIS_IS_TMC_CONFIG(E0)
-#define E0_CURRENT 650
-#define E0_MICROSTEPS 16
-#define E0_RSENSE 0.11
-#define E0_CHAIN_POS -1
-// #define E0_INTERPOLATE true
-// #define E0_HOLD_MULTIPLIER 0.5
-#endif
+  #if AXIS_IS_TMC_CONFIG(E0)
+    #define E0_CURRENT      650
+    #define E0_MICROSTEPS    16
+    #define E0_RSENSE         0.11
+    #define E0_CHAIN_POS     -1
+    //#define E0_INTERPOLATE true
+    //#define E0_HOLD_MULTIPLIER 0.5
+  #endif
 
 #if AXIS_IS_TMC_CONFIG(E1)
 #define E1_CURRENT 800
@@ -3226,46 +3233,46 @@
 #define STEALTHCHOP_E
 #endif
 
-/**
- * Optimize spreadCycle chopper parameters by using predefined parameter sets
- * or with the help of an example included in the library.
- * Provided parameter sets are
- * CHOPPER_DEFAULT_12V
- * CHOPPER_DEFAULT_19V
- * CHOPPER_DEFAULT_24V
- * CHOPPER_DEFAULT_36V
- * CHOPPER_09STEP_24V   // 0.9 degree steppers (24V)
- * CHOPPER_PRUSAMK3_24V // Imported parameters from the official Průša firmware for MK3 (24V)
- * CHOPPER_MARLIN_119   // Old defaults from Marlin v1.1.9
- *
- * Define your own with:
- * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
- */
-#define CHOPPER_TIMING CHOPPER_DEFAULT_24V // All axes (override below)
-// #define CHOPPER_TIMING_X  CHOPPER_TIMING        // For X Axes (override below)
-// #define CHOPPER_TIMING_X2 CHOPPER_TIMING_X
-// #define CHOPPER_TIMING_Y  CHOPPER_TIMING        // For Y Axes (override below)
-// #define CHOPPER_TIMING_Y2 CHOPPER_TIMING_Y
-// #define CHOPPER_TIMING_Z  CHOPPER_TIMING        // For Z Axes (override below)
-// #define CHOPPER_TIMING_Z2 CHOPPER_TIMING_Z
-// #define CHOPPER_TIMING_Z3 CHOPPER_TIMING_Z
-// #define CHOPPER_TIMING_Z4 CHOPPER_TIMING_Z
-// #define CHOPPER_TIMING_I  CHOPPER_TIMING        // For I Axis
-// #define CHOPPER_TIMING_J  CHOPPER_TIMING        // For J Axis
-// #define CHOPPER_TIMING_K  CHOPPER_TIMING        // For K Axis
-// #define CHOPPER_TIMING_U  CHOPPER_TIMING        // For U Axis
-// #define CHOPPER_TIMING_V  CHOPPER_TIMING        // For V Axis
-// #define CHOPPER_TIMING_W  CHOPPER_TIMING        // For W Axis
-// #define CHOPPER_TIMING_E  CHOPPER_TIMING        // For Extruders (override below)
-// #define CHOPPER_TIMING_E1 CHOPPER_TIMING_E
-// #define CHOPPER_TIMING_E2 CHOPPER_TIMING_E
-// #define CHOPPER_TIMING_E3 CHOPPER_TIMING_E
-// #define CHOPPER_TIMING_E4 CHOPPER_TIMING_E
-// #define CHOPPER_TIMING_E5 CHOPPER_TIMING_E
-// #define CHOPPER_TIMING_E6 CHOPPER_TIMING_E
-// #define CHOPPER_TIMING_E7 CHOPPER_TIMING_E
+  /**
+   * Optimize spreadCycle chopper parameters by using predefined parameter sets
+   * or with the help of an example included in the library.
+   * Provided parameter sets are
+   * CHOPPER_DEFAULT_12V
+   * CHOPPER_DEFAULT_19V
+   * CHOPPER_DEFAULT_24V
+   * CHOPPER_DEFAULT_36V
+   * CHOPPER_09STEP_24V   // 0.9 degree steppers (24V)
+   * CHOPPER_PRUSAMK3_24V // Imported parameters from the official Průša firmware for MK3 (24V)
+   * CHOPPER_MARLIN_119   // Old defaults from Marlin v1.1.9
+   *
+   * Define your own with:
+   * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
+   */
+  #define CHOPPER_TIMING CHOPPER_DEFAULT_24V        // All axes (override below)
+  //#define CHOPPER_TIMING_X  CHOPPER_TIMING        // For X Axes (override below)
+  //#define CHOPPER_TIMING_X2 CHOPPER_TIMING_X
+  //#define CHOPPER_TIMING_Y  CHOPPER_TIMING        // For Y Axes (override below)
+  //#define CHOPPER_TIMING_Y2 CHOPPER_TIMING_Y
+  //#define CHOPPER_TIMING_Z  CHOPPER_TIMING        // For Z Axes (override below)
+  //#define CHOPPER_TIMING_Z2 CHOPPER_TIMING_Z
+  //#define CHOPPER_TIMING_Z3 CHOPPER_TIMING_Z
+  //#define CHOPPER_TIMING_Z4 CHOPPER_TIMING_Z
+  //#define CHOPPER_TIMING_I  CHOPPER_TIMING        // For I Axis
+  //#define CHOPPER_TIMING_J  CHOPPER_TIMING        // For J Axis
+  //#define CHOPPER_TIMING_K  CHOPPER_TIMING        // For K Axis
+  //#define CHOPPER_TIMING_U  CHOPPER_TIMING        // For U Axis
+  //#define CHOPPER_TIMING_V  CHOPPER_TIMING        // For V Axis
+  //#define CHOPPER_TIMING_W  CHOPPER_TIMING        // For W Axis
+  //#define CHOPPER_TIMING_E  CHOPPER_TIMING        // For Extruders (override below)
+  //#define CHOPPER_TIMING_E1 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E2 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E3 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E4 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E5 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E6 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E7 CHOPPER_TIMING_E
 
-// @section tmc/status
+  // @section tmc/status
 
 /**
  * Monitor Trinamic drivers
@@ -3788,6 +3795,14 @@
  */
 // #define CNC_DRILLING_CYCLE
 
+/**
+ * CNC Drilling Cycle - UNDER DEVELOPMENT
+ *
+ * Enables G81 to perform a drilling cycle.
+ * Currently only supports a single cycle, no G-code chaining.
+ */
+//#define CNC_DRILLING_CYCLE
+
 // @section reporting
 
 /**
@@ -3907,7 +3922,7 @@
 #ifdef G0_FEEDRATE
 // #define VARIABLE_G0_FEEDRATE // The G0 feedrate is set by F in G0 motion mode
 #endif
-// #define G0_ANGULAR_FEEDRATE 2700 // (°/min)
+//#define G0_ANGULAR_FEEDRATE 2700 // (°/min)
 
 // @section gcode
 
@@ -4320,76 +4335,84 @@
 // #define E_MUX1_PIN 42  // Needed for 3 to 8 inputs
 // #define E_MUX2_PIN 44  // Needed for 5 to 8 inputs
 #elif HAS_PRUSA_MMU2
-// Serial port used for communication with MMU2.
-#define MMU2_SERIAL_PORT 2
+  // Serial port used for communication with MMU2.
+  #define MMU2_SERIAL_PORT 2
 
-// Use hardware reset for MMU if a pin is defined for it
-// #define MMU2_RST_PIN 23
+  // Use hardware reset for MMU if a pin is defined for it
+  //#define MMU2_RST_PIN 23
 
-// Enable if the MMU2 has 12V stepper motors (MMU2 Firmware 1.0.2 and up)
-// #define MMU2_MODE_12V
+  // Enable if the MMU2 has 12V stepper motors (MMU2 Firmware 1.0.2 and up)
+  //#define MMU2_MODE_12V
 
-// G-code to execute when MMU2 F.I.N.D.A. probe detects filament runout
-#define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
+  // G-code to execute when MMU2 F.I.N.D.A. probe detects filament runout
+  #define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
 
-// Add an LCD menu for MMU2
-// #define MMU2_MENUS
+  // Add an LCD menu for MMU2
+  //#define MMU2_MENUS
 
-// Settings for filament load / unload from the LCD menu.
-// This is for Průša MK3-style extruders. Customize for your hardware.
-#define MMU2_FILAMENTCHANGE_EJECT_FEED 80.0
-#define MMU2_LOAD_TO_NOZZLE_SEQUENCE \
-  {7.2, 1145},                       \
-      {14.4, 871},                   \
-      {36.0, 1393},                  \
-      {14.4, 871},                   \
-  {                                  \
-    50.0, 198                        \
-  }
+  // Settings for filament load / unload from the LCD menu.
+  // This is for Průša MK3-style extruders. Customize for your hardware.
+  #define MMU2_FILAMENTCHANGE_EJECT_FEED 80.0
+  #define MMU2_LOAD_TO_NOZZLE_SEQUENCE \
+    {  7.2, 1145 }, \
+    { 14.4,  871 }, \
+    { 36.0, 1393 }, \
+    { 14.4,  871 }, \
+    { 50.0,  198 }
 
-#define MMU2_RAMMING_SEQUENCE \
-  {1.0, 1000},                \
-      {1.0, 1500},            \
-      {2.0, 2000},            \
-      {1.5, 3000},            \
-      {2.5, 4000},            \
-      {-15.0, 5000},          \
-      {-14.0, 1200},          \
-      {-6.0, 600},            \
-      {10.0, 700},            \
-      {-10.0, 400},           \
-  {                           \
-    -50.0, 2000               \
-  }
+  #define MMU2_RAMMING_SEQUENCE \
+    {   1.0, 1000 }, \
+    {   1.0, 1500 }, \
+    {   2.0, 2000 }, \
+    {   1.5, 3000 }, \
+    {   2.5, 4000 }, \
+    { -15.0, 5000 }, \
+    { -14.0, 1200 }, \
+    {  -6.0,  600 }, \
+    {  10.0,  700 }, \
+    { -10.0,  400 }, \
+    { -50.0, 2000 }
 
-/**
- * Using a sensor like the MMU2S
- * This mode requires a MK3S extruder with a sensor at the extruder idler, like the MMU2S.
- * See https://help.prusa3d.com/en/guide/3b-mk3s-mk2-5s-extruder-upgrade_41560, step 11
- */
-#if HAS_PRUSA_MMU2S
-#define MMU2_C0_RETRY 5 // Number of retries (total time = timeout*retries)
+  /**
+   * Using a sensor like the MMU2S
+   * This mode requires a MK3S extruder with a sensor at the extruder idler, like the MMU2S.
+   * See https://help.prusa3d.com/en/guide/3b-mk3s-mk2-5s-extruder-upgrade_41560, step 11
+   */
+  #if HAS_PRUSA_MMU2S
+    #define MMU2_C0_RETRY   5             // Number of retries (total time = timeout*retries)
 
-#define MMU2_CAN_LOAD_FEEDRATE 800 // (mm/min)
-#define MMU2_CAN_LOAD_SEQUENCE        \
-  {0.1, MMU2_CAN_LOAD_FEEDRATE},      \
-      {60.0, MMU2_CAN_LOAD_FEEDRATE}, \
-  {                                   \
-    -52.0, MMU2_CAN_LOAD_FEEDRATE     \
-  }
+    #define MMU2_CAN_LOAD_FEEDRATE 800    // (mm/min)
+    #define MMU2_CAN_LOAD_SEQUENCE \
+      {  0.1, MMU2_CAN_LOAD_FEEDRATE }, \
+      {  60.0, MMU2_CAN_LOAD_FEEDRATE }, \
+      { -52.0, MMU2_CAN_LOAD_FEEDRATE }
 
-#define MMU2_CAN_LOAD_RETRACT 6.0   // (mm) Keep under the distance between Load Sequence values
-#define MMU2_CAN_LOAD_DEVIATION 0.8 // (mm) Acceptable deviation
+    #define MMU2_CAN_LOAD_RETRACT   6.0   // (mm) Keep under the distance between Load Sequence values
+    #define MMU2_CAN_LOAD_DEVIATION 0.8   // (mm) Acceptable deviation
 
-#define MMU2_CAN_LOAD_INCREMENT 0.2 // (mm) To reuse within MMU2 module
-#define MMU2_CAN_LOAD_INCREMENT_SEQUENCE             \
-  {                                                  \
-    -MMU2_CAN_LOAD_INCREMENT, MMU2_CAN_LOAD_FEEDRATE \
-  }
+    #define MMU2_CAN_LOAD_INCREMENT 0.2   // (mm) To reuse within MMU2 module
+    #define MMU2_CAN_LOAD_INCREMENT_SEQUENCE \
+      { -MMU2_CAN_LOAD_INCREMENT, MMU2_CAN_LOAD_FEEDRATE }
 
-// Continue unloading if sensor detects filament after the initial unload move
-// #define MMU_IR_UNLOAD_MOVE
-#else
+    // Continue unloading if sensor detects filament after the initial unload move
+    //#define MMU_IR_UNLOAD_MOVE
+  #else
+
+    /**
+     * MMU1 Extruder Sensor
+     *
+     * Support for a Průša (or other) IR Sensor to detect filament near the extruder
+     * and make loading more reliable. Suitable for an extruder equipped with a filament
+     * sensor less than 38mm from the gears.
+     *
+     * During loading the extruder will stop when the sensor is triggered, then do a last
+     * move up to the gears. If no filament is detected, the MMU2 can make some more attempts.
+     * If all attempts fail, a filament runout will be triggered.
+     */
+    //#define MMU_EXTRUDER_SENSOR
+    #if ENABLED(MMU_EXTRUDER_SENSOR)
+      #define MMU_LOADING_ATTEMPTS_NR 5 // max. number of attempts to load filament if first load fail
+    #endif
 
 /**
  * MMU1 Extruder Sensor
